@@ -1,7 +1,9 @@
-
-"Reproducible Research: Peer Assessment 1"
-==============================================
-
+----
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 ## Introduction
 
 It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the "quantified self" movement -- a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
@@ -67,9 +69,10 @@ median(sapply(data1.splt.day, function(x) sum(x$steps, na.rm=T)))
 data1.splt.interv <- split(data1, as.factor(data1$interval))
 out <- sapply(data1.splt.interv, function(x) mean(x$steps, na.rm=T))
 
-plot(as.numeric(names(out)), out, type="l", lwd=2,
+grap1 <- plot(as.numeric(names(out)), out, type="l", lwd=2,
      xlab="Interval", ylab="Steps (averaged over days)")
 ```
+
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r}
@@ -110,6 +113,7 @@ cbind(head(data1[missing,]), head(data1.imputed[missing,]))
 steps_day.imputed <- tapply(data1.imputed$steps, as.factor(data1$date), sum)
 hist(steps_day.imputed)
 ```
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
